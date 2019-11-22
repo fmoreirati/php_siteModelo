@@ -1,7 +1,7 @@
 <?php
 class Dao
 {
-    const HOST = "localhost:3307";
+    const HOST = "localhost:3306";
     const USER = "root";
     const PASS = "usbw";
     const DB = "phpsitemodelo";
