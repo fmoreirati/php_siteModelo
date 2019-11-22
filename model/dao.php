@@ -1,9 +1,9 @@
 <?php
 class Dao
 {
-    const HOST = "localhost";
+    const HOST = "localhost:3307";
     const USER = "root";
-    const PASS = "";
+    const PASS = "usbw";
     const DB = "phpsitemodelo";
 
     function conecta()
