@@ -22,10 +22,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Jogo</a>
+                        <a class="nav-link" href="#">Produtos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?p=list">Usuarios</a>
+                        <a class="nav-link" href="index.php?p=listUser">Usuarios</a>
                     </li>
                 </ul>
 
@@ -68,7 +68,7 @@
     if (isset($_GET['p'])) {
         if ($_GET['p'] == "cadastro")
             include("pages/add-usuario.php");
-        if ($_GET['p'] == "list")
+        if ($_GET['p'] == "listUser")
             include("pages/list-usuario.php");
         if ($_GET['p'] == "entrar")
             include("pages/login.php");

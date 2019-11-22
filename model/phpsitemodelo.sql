@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Máquina: localhost
--- Data de Criação: 22-Nov-2019 às 19:08
+-- Data de Criação: 22-Nov-2019 às 20:02
 -- Versão do servidor: 5.6.13
 -- versão do PHP: 5.4.17
 
@@ -25,10 +25,10 @@ USE `phpsitemodelo`;
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `game`
+-- Estrutura da tabela `produto`
 --
 
-CREATE TABLE IF NOT EXISTS `game` (
+CREATE TABLE IF NOT EXISTS `produto` (
   `uid` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) DEFAULT NULL,
   `descricao` varchar(100) DEFAULT NULL,
@@ -43,10 +43,10 @@ CREATE TABLE IF NOT EXISTS `game` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Extraindo dados da tabela `game`
+-- Extraindo dados da tabela `produto`
 --
 
-INSERT INTO `game` (`uid`, `nome`, `descricao`, `valor`, `quant`, `foto1`, `foto2`, `foto3`, `foto4`, `foto5`) VALUES
+INSERT INTO `produto` (`uid`, `nome`, `descricao`, `valor`, `quant`, `foto1`, `foto2`, `foto3`, `foto4`, `foto5`) VALUES
 (1, 'Downward', 'Jogo medieval', '0.00', 0, '', '', '', '', '');
 
 -- --------------------------------------------------------
@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   PRIMARY KEY (`uid`),
   KEY `id-tipo` (`id-tipo`),
   KEY `id-tipo_2` (`id-tipo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Extraindo dados da tabela `usuario`
@@ -95,7 +95,8 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 INSERT INTO `usuario` (`uid`, `nome`, `nickname`, `email`, `senha`, `id-tipo`) VALUES
 (1, 'admin', 'admin', 'admin@admin.com', '111111', 2),
 (2, 'Ana Maria', 'anaM', 'ana@ana.com.br', '111111', 1),
-(3, 'Pedro', 'pp2', 'pedro@email.com', '111111', 1);
+(3, 'Pedro', 'pp2', 'pedro@email.com', '111111', 1),
+(4, 'Mario', 'marinho', 'mario@email.com', '111111', 1);
 
 --
 -- Constraints for dumped tables

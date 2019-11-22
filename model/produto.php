@@ -1,5 +1,5 @@
 <?php
-class Game
+class Produto
 {
     public $uid;
     public $nome;
@@ -9,7 +9,7 @@ class Game
     {
         try {
             require_once("dao.php");
-            $sql = "insert into game(nome, descricao) value (:nome, :descricao)";
+            $sql = "insert into produto(nome, descricao) value (:nome, :descricao)";
             $dao = new Dao;
             $stman = $dao->conecta()->prepare($sql);
             $stman->bindParam(":nome", $this->nome);
@@ -25,7 +25,7 @@ class Game
         $result = null;
         try {
             require_once("dao.php");
-            $sql = "select * from game";
+            $sql = "select * from produto";
             $dao = new Dao;
             $stman = $dao->conecta()->prepare($sql);
             //$stman->bindParam(":nome", $this->nome);
