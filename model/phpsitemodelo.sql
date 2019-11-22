@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Máquina: localhost
--- Data de Criação: 22-Nov-2019 às 18:40
+-- Data de Criação: 22-Nov-2019 às 19:08
 -- Versão do servidor: 5.6.13
 -- versão do PHP: 5.4.17
 
@@ -52,6 +52,27 @@ INSERT INTO `game` (`uid`, `nome`, `descricao`, `valor`, `quant`, `foto1`, `foto
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `tipo`
+--
+
+CREATE TABLE IF NOT EXISTS `tipo` (
+  `id-tipo` int(11) NOT NULL AUTO_INCREMENT,
+  `nome-tipo` varchar(100) NOT NULL,
+  `nivel` int(11) NOT NULL,
+  PRIMARY KEY (`id-tipo`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Extraindo dados da tabela `tipo`
+--
+
+INSERT INTO `tipo` (`id-tipo`, `nome-tipo`, `nivel`) VALUES
+(1, 'comum', 0),
+(2, 'admin', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `usuario`
 --
 
@@ -61,17 +82,30 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `nickname` varchar(50) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `senha` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`uid`)
+  `id-tipo` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`uid`),
+  KEY `id-tipo` (`id-tipo`),
+  KEY `id-tipo_2` (`id-tipo`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
-INSERT INTO `usuario` (`uid`, `nome`, `nickname`, `email`, `senha`) VALUES
-(1, 'admin', 'admin', 'admin@admin.com', '111111'),
-(2, 'Ana Maria', 'anaM', 'ana@ana.com.br', '111111'),
-(3, 'Pedro', 'pp2', 'pedro@email.com', '111111');
+INSERT INTO `usuario` (`uid`, `nome`, `nickname`, `email`, `senha`, `id-tipo`) VALUES
+(1, 'admin', 'admin', 'admin@admin.com', '111111', 2),
+(2, 'Ana Maria', 'anaM', 'ana@ana.com.br', '111111', 1),
+(3, 'Pedro', 'pp2', 'pedro@email.com', '111111', 1);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Limitadores para a tabela `usuario`
+--
+ALTER TABLE `usuario`
+  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`id-tipo`) REFERENCES `tipo` (`id-tipo`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

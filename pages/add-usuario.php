@@ -21,7 +21,7 @@
 
         <div class="form-group">
             <label for="exampleInputPassword2">Confirmar senha</label>
-            <input type="password" class="form-control" id="exampleInputPassword2" name="condpws">
+            <input type="password" class="form-control" id="exampleInputPassword2" name="confpws">
         </div>
 
         <div class="form-group">
@@ -41,7 +41,12 @@ if (!empty($_POST)) {
         $user->email = $_POST['email'];
         $user->nickname = $_POST['nickname'];
         $user->pws = $_POST['pws'];
-        $user->add();
+        $erros = $user->validar($_POST['confpws']);
+        if ( $erros == "") {
+            $user->add();
+        } else { 
+            erro($erros);
+        }
     } catch (Exception $e) {
         erro("Erro: " . $e->getMessage());
     }
