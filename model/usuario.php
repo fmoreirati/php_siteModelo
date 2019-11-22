@@ -99,4 +99,22 @@ class Usuario
         }
         return $result;
     }
+
+    public function validar($confSenha){
+        $erros = "";
+        if (empty($this->nome)){
+            $erros .= "Nome embranco!<br>";
+        }
+        if (empty($this->email)){
+            $erros .= "E-mail embranco!<br>";
+        }
+        if (empty($this->pws)){
+            $erros .= "Senha embranco!<br>";
+        } else if (strlen($this->pws) < 6){
+            $erros .= "Senha muito curta!";
+        } else if ($this->pws !== $confSenha){
+            $erros .= "Senhas diferentes!";
+        }
+        return $erros;
+    }
 }
