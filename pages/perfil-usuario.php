@@ -1,7 +1,7 @@
 <?php
 require_once("./model/usuario.php");
 $user = new Usuario;
-if (session_status() == null) {
+if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
 if (isset($_SESSION["user"])) {
@@ -18,7 +18,8 @@ if (isset($_SESSION["user"])) {
     }
     $dados = $user->get($_SESSION["user"]->uid);
 } else {
-    header("Location: index.php");
+    //header("Location: index.php");
+    echo '<script> location.replace("/"); </script>';
 }
 ?>
 <section class="container">

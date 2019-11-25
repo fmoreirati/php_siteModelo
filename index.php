@@ -59,7 +59,6 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     <?php
     include_once("config.php");
     include_once("pages/mensagens.php");
-    echo (session_status());
     if (isset($_GET['p'])) {
         if ($_GET['p'] == "cadastro")
             include("pages/add-usuario.php");

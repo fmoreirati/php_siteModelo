@@ -20,18 +20,16 @@ if (isset($_POST["email"]) && isset($_POST["pws"])) {
         require_once("./model/usuario.php");
         $user = new Usuario;
         $result = $user->login($_POST['email'], $_POST['pws']);
-
         if (session_status() !== PHP_SESSION_ACTIVE) {
             session_start();
         }
-
         if ($result) {
             $user = $result[0];
             $user->pws = "";
             $_SESSION["user"] = $user;
-            header("Location: index.php");
+            //header("Location: index.php");
+            echo '<script> location.replace("/"); </script>';
         } else {
-            //session_destroy();
             erro("Usuario não localizado!");
         }
     } else {

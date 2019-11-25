@@ -1,12 +1,9 @@
 <?php
 require_once("./model/usuario.php");
-
 if (!isset($user))
     $user = new Usuario;
-
 if (!empty($_POST)) {
     try {
-        // var_dump($_POST);
         $user->nome = $_POST['nome'];
         $user->email = $_POST['email'];
         $user->nickname = $_POST['nickname'];
