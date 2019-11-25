@@ -19,11 +19,12 @@ if (isset($_POST["email"]) && isset($_POST["pws"])) {
     if (!empty($_POST["email"]) || !empty($_POST["pws"])) {
         require_once("./model/usuario.php");
         $user = new Usuario;
-        //var_dump($_POST);
         $result = $user->login($_POST['email'], $_POST['pws']);
-        if (session_status() == null) {
+
+        if (session_status() !== PHP_SESSION_ACTIVE) {
             session_start();
         }
+
         if ($result) {
             $user = $result[0];
             $user->pws = "";
@@ -35,7 +36,6 @@ if (isset($_POST["email"]) && isset($_POST["pws"])) {
         }
     } else {
         erro("Campo em branco!");
-        header("Location: index.php");
     }
 }
 ?>

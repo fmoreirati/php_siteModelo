@@ -13,10 +13,11 @@ class Usuario
             require_once("dao.php");
             $sql = "insert into usuario(nome,nickname, email, senha) value (:nome, :nickname, :email, :senha)";
             $dao = new Dao;
+            $newpws = crypt($_POST['pws'], $_POST['email']);
             $stman = $dao->conecta()->prepare($sql);
             $stman->bindParam(":nome", $this->nome);
             $stman->bindParam(":email", $this->email);
-            $stman->bindParam(":senha", $this->pws);
+            $stman->bindParam(":senha", $newpws);
             $stman->bindParam(":nickname", $this->nickname);
             $stman->execute();
             aviso("Salvo com sucesso!");
@@ -89,9 +90,10 @@ class Usuario
             require_once("dao.php");
             $sql = "select * from usuario where email = :email and senha = :senha";
             $dao = new Dao;
+            $newpws = crypt($_POST['pws'], $_POST['email']);
             $stman = $dao->conecta()->prepare($sql);
             $stman->bindParam(":email", $email);
-            $stman->bindParam(":senha", $senha);
+            $stman->bindParam(":senha", $newpws);
             $stman->execute();
             $result = $stman->fetchAll(PDO::FETCH_OBJ);
         } catch (Exception $e) {

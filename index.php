@@ -1,3 +1,8 @@
+<?php 
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -26,9 +31,7 @@
                         <a class="nav-link" href="?p=listUser">Usuarios</a>
                     </li>
                 </ul>
-                <?php if (session_status() == null) {
-                    session_start();
-                }
+                <?php
                 if (!isset($_SESSION["user"])) { ?>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
@@ -56,6 +59,7 @@
     <?php
     include_once("config.php");
     include_once("pages/mensagens.php");
+    echo (session_status());
     if (isset($_GET['p'])) {
         if ($_GET['p'] == "cadastro")
             include("pages/add-usuario.php");
