@@ -1,3 +1,4 @@
+<!-- PHP -->
 <?php
 require_once("./model/usuario.php");
 $user = new Usuario;
@@ -63,6 +64,7 @@ if (isset($_SESSION["user"])) {
     </form>
 </section>
 
+<!-- JavaScrip -->
 <script>
     function editar() {
         var objetos = document.querySelectorAll(".editar");

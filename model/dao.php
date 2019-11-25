@@ -3,7 +3,7 @@ class Dao
 {
     const HOST = "localhost:3306";
     const USER = "root";
-    const PASS = "usbw";
+    const PASS = "Abc@12345";
     const DB = "phpsitemodelo";
 
     function conecta()
