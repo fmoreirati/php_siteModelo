@@ -7,4 +7,5 @@
 // session_destroy();
 // header("Location: index.php");
 // echo '<script> location.replace("/"); </script>';
+// site online: https://lomop.000webhostapp.com/
 ?>
