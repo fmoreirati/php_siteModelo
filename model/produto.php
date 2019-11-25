@@ -37,3 +37,4 @@ class Produto
         return $result;
     }
 }
+?>

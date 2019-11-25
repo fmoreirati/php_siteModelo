@@ -14,7 +14,6 @@
         <button type="reset" class="btn btn-primary">Cancelar</button>
     </form>
 </section>
-
 <?php
 if (isset($_POST["email"]) && isset($_POST["pws"])) {
     if (!empty($_POST["email"]) || !empty($_POST["pws"])) {
@@ -22,22 +21,21 @@ if (isset($_POST["email"]) && isset($_POST["pws"])) {
         $user = new Usuario;
         //var_dump($_POST);
         $result = $user->login($_POST['email'], $_POST['pws']);
-
         if (session_status() == null) {
             session_start();
         }
-
         if ($result) {
             $user = $result[0];
             $user->pws = "";
             $_SESSION["user"] = $user;
-            header("Location:index.php");
+            header("Location: index.php");
         } else {
             //session_destroy();
             erro("Usuario não localizado!");
         }
     } else {
         erro("Campo em branco!");
+        header("Location: index.php");
     }
 }
 ?>

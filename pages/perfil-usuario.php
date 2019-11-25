@@ -1,9 +1,7 @@
-<!-- PHP -->
 <?php
 require_once("./model/usuario.php");
 $user = new Usuario;
-
-if (session_status() != PHP_SESSION_ACTIVE) {
+if (session_status() == null) {
     session_start();
 }
 if (isset($_SESSION["user"])) {
@@ -19,13 +17,10 @@ if (isset($_SESSION["user"])) {
         }
     }
     $dados = $user->get($_SESSION["user"]->uid);
-    //var_dump($dados);
 } else {
     header("Location: index.php");
 }
-
 ?>
-
 <section class="container">
     <div class="form-group">
         <button type="button" class="btn btn-primary" onclick="editar()">Editar</button>
@@ -64,7 +59,6 @@ if (isset($_SESSION["user"])) {
     </form>
 </section>
 
-<!-- JavaScrip -->
 <script>
     function editar() {
         var objetos = document.querySelectorAll(".editar");
