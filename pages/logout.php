@@ -1,5 +1,5 @@
 <?php
-    if (session_status() != PHP_SESSION_ACTIVE) {
+    if (session_status() == null) {
         session_start();
     }
     session_destroy();

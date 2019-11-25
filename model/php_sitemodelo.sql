@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Base de Dados: `phpsitemodelo`
 --
-CREATE DATABASE IF NOT EXISTS `phpsitemodelo` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `phpsitemodelo`;
 
 -- --------------------------------------------------------
 

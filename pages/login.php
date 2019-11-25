@@ -23,7 +23,7 @@ if (isset($_POST["email"]) && isset($_POST["pws"])) {
         //var_dump($_POST);
         $result = $user->login($_POST['email'], $_POST['pws']);
 
-        if (session_status() != PHP_SESSION_ACTIVE) {
+        if (session_status() == null) {
             session_start();
         }
 
@@ -33,7 +33,7 @@ if (isset($_POST["email"]) && isset($_POST["pws"])) {
             $_SESSION["user"] = $user;
             header("Location:index.php");
         } else {
-            session_destroy();
+            //session_destroy();
             erro("Usuario não localizado!");
         }
     } else {

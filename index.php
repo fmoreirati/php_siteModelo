@@ -29,7 +29,7 @@
                     </li>
                 </ul>
 
-                <?php if (session_status() != PHP_SESSION_ACTIVE) {
+                <?php if (session_status() == null) {
                     session_start();
                 } ?>
 
