@@ -37,7 +37,8 @@ class Produto
         }
     }
 
-    public function listAll(){
+    public function listAll()
+    {
         $result = null;
         try {
             require_once("dao.php");
@@ -52,5 +53,30 @@ class Produto
         }
         return $result;
     }
+
+    public function validar()
+    {
+        $erros = "";
+        if (empty($this->nome)) {
+            $erros .= "Nome embranco!<br>";
+        }
+
+        if (empty($this->descricao)) {
+            $erros .= "Descrição embranco!<br>";
+        }
+
+        if ($this->quant <= 0) {
+            $erros .= "Quantidade embranco ou zerada!<br>";
+        }
+
+        if ($this->valor <= 0) {
+            $erros .= "Valor embranco ou zerada!<br>";
+        }
+
+        if (empty($this->foto1)) {
+            $erros .= "Foto embranco. Será necessario uma foto!<br>";
+        }
+
+        return $erros;
+    }
 }
-?>

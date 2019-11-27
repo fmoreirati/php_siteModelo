@@ -25,7 +25,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Produtos</a>
+                        <a class="nav-link" href="?p=addProduto">Produtos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="?p=listUser">Usuarios</a>
@@ -70,6 +70,12 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
             include("pages/logout.php");
         if ($_GET['p'] == "perfil")
             include("pages/perfil-usuario.php");
+        if ($_GET['p'] == "perfilProd")
+            include("pages/perfil-produto.php");
+        if ($_GET['p'] == "addProduto")
+            include("pages/add-produto.php");
+        if ($_GET['p'] == "carrinho")
+            include("pages/carrinho.php");
     } else {
         include("pages/home.php");
     }
