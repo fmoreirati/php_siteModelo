@@ -70,7 +70,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
             include("pages/logout.php");
         if ($_GET['p'] == "perfil")
             include("pages/perfil-usuario.php");
-        if ($_GET['p'] == "perfilProd")
+        if ($_GET['p'] == "perfilProduto")
             include("pages/perfil-produto.php");
         if ($_GET['p'] == "addProduto")
             include("pages/add-produto.php");

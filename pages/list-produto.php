@@ -11,7 +11,7 @@
                 <p class='card-text'>$p->descricao</p>
                 <p class='card-text text-danger'>$p->valor</p>
                 <p class='card-text'>Unidades: $p->quant</p>
-                <a href='?p=carrinho&add=$p->id' class='btn btn-danger'>Comprar</a>
+                <a href='?p=perfilProduto&id=$p->id' class='btn btn-danger'>Comprar</a>
             </div>
         </div>";
     }

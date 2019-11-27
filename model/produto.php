@@ -54,6 +54,24 @@ class Produto
         return $result;
     }
 
+    public function get($id)
+    {
+        $result = null;
+        try {
+            require_once("dao.php");
+            $sql = "select * from produto where id = :id";
+            $dao = new Dao;
+            $stman = $dao->conecta()->prepare($sql);
+            $stman->bindParam(":id", $id);
+            $stman->execute();
+            $result = $stman->fetch(PDO::FETCH_OBJ);
+        } catch (Exception $e) {
+            erro("Erro: " .  $e->getMessage());
+        }
+        return $result;
+    }
+
+
     public function validar()
     {
         $erros = "";
