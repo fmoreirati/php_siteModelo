@@ -1,4 +1,7 @@
 <?php
+require_once("produto.php");
+require_once("venda.php");
+
 class Venda_Produto
 {
     public $id_venda;
@@ -6,6 +9,14 @@ class Venda_Produto
     public $quant;
     public $valor_produto;
     public $valor_total;
+
+    public function __construct()
+    {
+        $this->quant = 1;
+        $this->valor_produto = 0;
+        $this->valor_produto = 0;
+    }
+
 
     public function add()
     {

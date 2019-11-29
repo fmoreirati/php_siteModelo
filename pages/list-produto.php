@@ -5,7 +5,7 @@
     foreach ($produto->listAll() as $p) {
         echo "
             <div class='card col-4'>
-            <img src='img\box.png' class='card-img-top' alt='...'>
+            <img src='img/produtos/$p->foto1' class='card-img-top' alt='...'>
             <div class='card-body'>
                 <h5 class='card-title'>$p->nome</h5>
                 <p class='card-text'>$p->descricao</p>

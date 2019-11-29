@@ -12,6 +12,10 @@ class Produto
     public $foto4;
     public $foto5;
 
+    public function __construct()
+    {
+        $this->foto1 = "box.png";
+    }
 
     public function add()
     {

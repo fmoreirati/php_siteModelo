@@ -1,4 +1,4 @@
-<?php 
+<?php
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
@@ -39,6 +39,9 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="?p=entrar">Entrar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="?p=carrinho">Carrinho</a>
                         </li>
                     </ul>
                 <?php } else { ?>
