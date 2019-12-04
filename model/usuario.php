@@ -11,16 +11,9 @@ class Usuario
     {
         try {
             require_once("dao.php");
-            $sql = "
-
-            
-            START TRANSACTION;
-            insert into usuario(nome,nickname, email, senha)
-            value (:nome, :nickname, :email, :senha);
-            COMMIT;
-            ";
+            $sql = "insert into usuario(nome,nickname, email, senha) value (:nome, :nickname, :email, :senha)";
             $dao = new Dao;
-            $newpws = crypt($this->pws, $this->email);
+            $newpws = crypt($_POST['pws'], $_POST['email']);
             $stman = $dao->conecta()->prepare($sql);
             $stman->bindParam(":nome", $this->nome);
             $stman->bindParam(":email", $this->email);
@@ -28,9 +21,8 @@ class Usuario
             $stman->bindParam(":nickname", $this->nickname);
             $stman->execute();
             aviso("Salvo com sucesso!");
-        } catch (PDOException $e) {
+        } catch (Exception $e) {
             erro("Erro: " .  $e->getMessage());
-            $stman->exec("ROLLBACK;");
         }
     }
 
@@ -98,9 +90,10 @@ class Usuario
             require_once("dao.php");
             $sql = "select * from usuario where email = :email and senha = :senha";
             $dao = new Dao;
+            $newpws = crypt($_POST['pws'], $_POST['email']);
             $stman = $dao->conecta()->prepare($sql);
             $stman->bindParam(":email", $email);
-            $stman->bindParam(":senha", $senha);
+            $stman->bindParam(":senha", $newpws);
             $stman->execute();
             $result = $stman->fetchAll(PDO::FETCH_OBJ);
         } catch (Exception $e) {
@@ -109,43 +102,22 @@ class Usuario
         return $result;
     }
 
-    public function validar($confSenha)
-    {
+    public function validar($confSenha){
         $erros = "";
-        if (empty($this->nome)) {
+        if (empty($this->nome)){
             $erros .= "Nome embranco!<br>";
         }
-        if (empty($this->email)) {
+        if (empty($this->email)){
             $erros .= "E-mail embranco!<br>";
         }
-        if (empty($this->pws)) {
+        if (empty($this->pws)){
             $erros .= "Senha embranco!<br>";
-        } else if (strlen($this->pws) < 6) {
+        } else if (strlen($this->pws) < 6){
             $erros .= "Senha muito curta!";
-        } else if ($this->pws !== $confSenha) {
+        } else if ($this->pws !== $confSenha){
             $erros .= "Senhas diferentes!";
         }
         return $erros;
     }
 }
-
-/* 
-BEGIN
-
-DECLARE exit handler for sqlexception
-  BEGIN
-  ROLLBACK;
-END;
-
-DECLARE exit handler for sqlwarning
- BEGIN
- ROLLBACK;
-END;
-
-START TRANSACTION;
-
-[Seu codigo MYSQL]
-
-COMMIT;
-
-END */
+?>

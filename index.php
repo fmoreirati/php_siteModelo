@@ -1,4 +1,8 @@
-<?php include_once("config.php") ?>
+<?php 
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -18,53 +22,43 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Produtos</a>
+                        <a class="nav-link" href="?p=addProduto">Produtos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?p=listUser">Usuarios</a>
+                        <a class="nav-link" href="?p=listUser">Usuarios</a>
                     </li>
                 </ul>
-
-                <?php if (session_status() != PHP_SESSION_ACTIVE) {
-                    session_start();
-                } ?>
-
-                <?php if (!isset($_SESSION["user"])) : ?>
-
+                <?php
+                if (!isset($_SESSION["user"])) { ?>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?p=cadastro">Cadastro</a>
+                            <a class="nav-link" href="?p=cadastro">Cadastro</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?p=entrar">Entrar</a>
+                            <a class="nav-link" href="?p=entrar">Entrar</a>
                         </li>
                     </ul>
-
-                <?php else : ?>
-
+                <?php } else { ?>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?p=perfil">
+                            <a class="nav-link" href="?p=perfil">
                                 <?= $_SESSION['user']->nome; ?>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?p=sair">Sair</a>
+                            <a class="nav-link" href="?p=sair">Sair</a>
                         </li>
                     </ul>
-
-                <?php endif; ?>
-
+                <?php } ?>
             </div>
         </div>
     </nav>
-
     <?php
-    include("pages/mensagens.php");
+    include_once("config.php");
+    include_once("pages/mensagens.php");
     if (isset($_GET['p'])) {
         if ($_GET['p'] == "cadastro")
             include("pages/add-usuario.php");
@@ -76,11 +70,16 @@
             include("pages/logout.php");
         if ($_GET['p'] == "perfil")
             include("pages/perfil-usuario.php");
+        if ($_GET['p'] == "perfilProduto")
+            include("pages/perfil-produto.php");
+        if ($_GET['p'] == "addProduto")
+            include("pages/add-produto.php");
+        if ($_GET['p'] == "carrinho")
+            include("pages/carrinho.php");
     } else {
         include("pages/home.php");
     }
     ?>
-
     <footer class="mt-2 p-3 bg-dark text-light text-center fixed-bottom">
         <p>feito por <a href="https://fabianomoreira.blogspot.com">Fabiano Moreira</a></p>
     </footer>

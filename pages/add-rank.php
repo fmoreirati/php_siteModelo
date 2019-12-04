@@ -2,7 +2,7 @@
 include_once("../config.php");
 include_once("mensagens.php");
 if (!empty($_REQUEST)) {
-    var_dump($_REQUEST);
+    //var_dump($_REQUEST);
     try {
         require_once("../model/dao.php");
         $sql = "insert into ranck(uid_usuario, uid_game, pontos) values (:uid_usuario, :uid_game, :pontos)";
