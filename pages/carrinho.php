@@ -28,6 +28,17 @@ if (isset($_GET['remove'])) {
     array_splice($produtos, $_GET['remove'], 1);
     $_SESSION["produtos"] = $produtos;
 }
+
+if (isset($_POST)) {
+    var_dump($_POST);
+    // $venda = new Venda;
+    // $user = $_SESSION["user"];
+    // $venda->uid_usuario = $user["id"];
+    // $venda->valor = $_POST['total'];
+    // $venda->add();
+    // $venda->get($user["id"]);
+}
+
 //session_destroy();
 ?>
 
@@ -37,56 +48,57 @@ if (isset($_GET['remove'])) {
     }
 </style>
 <section class="container">
-    <div class="row">
-        <p class="col-md-6">
-            <a href="index.php">
-                <button type="button" class="btn btn-primary"> Escolher + Produto </button>
-            </a>
-        </p>
-        <p class="col-md-6 text-right">
-            <button class="btn btn-danger"> Realizar Pagamento </button>
-            <input type="hidden" value='' name="total" class="form-control campo total" disabled />
-        </p>
-    </div>
+    <form method="post">
+        <div class="row">
+            <p class="col-md-6">
+                <a href="index.php">
+                    <button type="button" class="btn btn-primary"> Escolher + Produto </button>
+                </a>
+            </p>
+            <p class="col-md-6 text-right">
+                <button class="btn btn-danger"> Realizar Pagamento </button>
+                <input type="hidden" value='' name="total" class="form-control campo total" disabled />
+            </p>
+        </div>
 
-    <div class="table-responsive">
-        <table class="table">
-            <tr class=''>
-                <th class="">Produto</th>
-                <th class="">Quantidade</th>
-                <th class="">Valor Unit.</th>
-                <th class="">Valor Total</th>
-                <th class=""> <i class="fa fa-remove"></i></th>
-            </tr>
-
-            <?php foreach ($produtos as $key => $p) { ?>
-                <input type="hidden" value="" name="id" />
-                <tr>
-                    <!-- Foto e nome do produto -->
-                    <td class="row">
-                        <div class="col-6">
-                            <img src='<?= "img/produtos/" . $p->foto1 ?>' title="" alt="" class="img-fluid produtopq">
-                        </div>
-                        <div class="col-6"><?= $p->nome ?></div>
-                    </td>
-                    <!-- Quantidade -->
-                    <td class="">
-                        <input type="number" name="quant" value="1" min="1" max='<?= $p->quant ?>' step="1" class="form-control quant" onchange="calc()" />
-                    </td>
-                    <!-- Valor Unitario -->
-                    <td class="">
-                        <input type="number" name="valor" min="0.00" step="0.01" value='<?= $p->valor ?>' disabled class="form-control campos" />
-                    </td>
-                    <!-- Valor da Venda -->
-                    <td class="">
-                        <input type="number" name="valorItem" min="0.00" step="0.01" disabled class="form-control valores" />
-                    </td>
-
-                    <td class=""><a href=<?= "index.php?p=carrinho&remove=$key" ?> onclick="return confirm('Remover Produto')"><i class="fa fa-remove"></i></a></td>
+        <div class="table-responsive">
+            <table class="table">
+                <tr class=''>
+                    <th class="">Produto</th>
+                    <th class="">Quantidade</th>
+                    <th class="">Valor Unit.</th>
+                    <th class="">Valor Total</th>
+                    <th class=""> <i class="fa fa-remove"></i></th>
                 </tr>
-            <?php } ?>
-        </table>
-    </div>
+
+                <?php foreach ($produtos as $key => $p) { ?>
+                    <input type="hidden" value="" name="id" />
+                    <tr>
+                        <!-- Foto e nome do produto -->
+                        <td class="row">
+                            <div class="col-6">
+                                <img src='<?= "img/produtos/" . $p->foto1 ?>' title="" alt="" class="img-fluid produtopq">
+                            </div>
+                            <div class="col-6"><?= $p->nome ?></div>
+                        </td>
+                        <!-- Quantidade -->
+                        <td class="">
+                            <input type="number" name="quant" value="1" min="1" max='<?= $p->quant ?>' step="1" class="form-control quant" onchange="calc()" />
+                        </td>
+                        <!-- Valor Unitario -->
+                        <td class="">
+                            <input type="number" name="valor" min="0.00" step="0.01" value='<?= $p->valor ?>' disabled class="form-control campos" />
+                        </td>
+                        <!-- Valor da Venda -->
+                        <td class="">
+                            <input type="number" name="valorItem" min="0.00" step="0.01" disabled class="form-control valores" />
+                        </td>
+
+                        <td class=""><a href=<?= "index.php?p=carrinho&remove=$key" ?> onclick="return confirm('Remover Produto')"><i class="fa fa-remove"></i></a></td>
+                    </tr>
+                <?php } ?>
+            </table>
+        </div>
     </form>
 
     <div class="row">

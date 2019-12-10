@@ -40,4 +40,21 @@ class Venda
         }
         return $result;
     }
+
+    public function get($uid)
+    {
+        $result = null;
+        try {
+            require_once("dao.php");
+            $sql = "select * from venda where uid_usuario = :id";
+            $dao = new Dao;
+            $stman = $dao->conecta()->prepare($sql);
+            $stman->bindParam(":id", $uid);
+            $stman->execute();
+            $result = $stman->fetch(PDO::FETCH_OBJ);
+        } catch (Exception $e) {
+            erro("Erro: " .  $e->getMessage());
+        }
+        return $result;
+    }
 }
